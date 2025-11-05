@@ -1,40 +1,64 @@
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+//import java.nio.file.WatchEvent;
+
 import javax.swing.JFrame;
+import javax.swing.JMenu;
 import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+//import javax.swing.JPanel;
+//import javax.swing.JTable;
+import javax.swing.SpringLayout;
 
 public class VisualGUI {
     private static JFrame mainInventoryFrame;
-    private static JMenuBar menuBar;
-    private static JMenu fileMenu;
-    private static JMenu editMenu;
-    private static JMenu helpMenu;
-    private static JTable inventoryTable;
-    private static JPanel mainPanel;
+    // private static JMenuBar menuBar;
+    // private static JMenu fileMenu;
+    // private static JMenu editMenu;
+    // private static JMenu helpMenu;
+    // private static JTable inventoryTable;
+    // private static JPanel mainPanel;
 
-    public OSInventory() {
+    public VisualGUI() {
         // Constructor
     } 
 
     //MAIN
     public static void main(String[] args) {
         // Application entry point
-        OSInventory main = new OSInventory();
+        VisualGUI main = new VisualGUI();
         main.mainFrame();
-        main.showMenu();
+        main.showMainMenu();
         main.fileMenu();
         main.editMenu();
         main.helpMenu();
-
-        //JFrame to exit on close
-        main.addWindowListner(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent windowEvent) {
-                System.exit(0);
-            }
-        });
-
-        //Make JFrame visible
-        main.setVisible(true);
     }
+
+	//Frame Constructor
+	void mainFrame() {
+		//Initialize Spring Layout
+		SpringLayout mainFrameSpringLayout = new SpringLayout();
+
+		/*We will let fonts and size to be controlled by manager for now */
+		//Initialize Frame
+		mainInventoryFrame = new JFrame("Inventory System"); //Frame Title
+		mainInventoryFrame.setSize(800, 800); // Set initial frame size
+		mainInventoryFrame.setLayout(mainFrameSpringLayout); //Set layout manager to spring layout manager
+		mainInventoryFrame.setResizable(true); // Set frame to be resizable (true)
+		/* Background colors and all color options will need to be eventually set to variable to be able to controlled by end user */
+		mainInventoryFrame.getContentPane().setBackground(Color.LIGHT_GRAY); // Set Frame Background color
+
+		//JFrame to exit on close
+		mainInventoryFrame.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent windowEvent) {System.exit(0);}
+		});
+
+		//Make JFrame visible
+		mainInventoryFrame.setVisible(true);
+	}
 
     // MENU BAR Constructor
     void showMainMenu(){
@@ -52,7 +76,8 @@ public class VisualGUI {
 
         
         //Set MENU bar to JFrame
-        main.setJMenuBar(mainMenuBar);
+        mainInventoryFrame.setJMenuBar(mainMenuBar);
+		mainInventoryFrame.setVisible(true);
     
     }
 
@@ -165,12 +190,6 @@ public class VisualGUI {
 		public void actionPerformed(ActionEvent event) {
 			System.out.println("Open Database Clicked");
 			//database_connect.main(null);
-			JPanel dataPanel = createDataPanel();
-			myFrame.getContentPane().removeAll();
-			myFrame.getContentPane().add(dataPanel);
-			myFrame.revalidate();
-			myFrame.repaint();
-			
 		}
 	}
 	class backupDataBaseListener implements ActionListener{
@@ -182,8 +201,6 @@ public class VisualGUI {
 	class printItemListener implements ActionListener{
 		public void actionPerformed(ActionEvent event) {
 			System.out.println("Print Clicked");
-			InventoryPrint inventoryPrint = new InventoryPrint();
-			inventoryPrint.printInventory();
 		}
 	}
 	class exitInventoryProgramListener implements ActionListener{
