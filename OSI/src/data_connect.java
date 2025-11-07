@@ -7,9 +7,9 @@ public class data_connect {
     Connection conn = null;
 
     public void connectDB() {
-        String url = "jdbc:mysql://localhost:3306/osidb";
-        String user = "root";
-        String password = "Ftw2ftw2!";
+        String url = "";
+        String user = "";
+        String password = "";
 
         try (Connection conn = DriverManager.getConnection(url, user, password)) {
             if (conn != null) {
@@ -26,5 +26,6 @@ public class data_connect {
     public void closeDB() throws SQLException {
         conn.close();
     }
+
 
 }
