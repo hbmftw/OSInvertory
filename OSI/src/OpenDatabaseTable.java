@@ -21,9 +21,9 @@ public class OpenDatabaseTable extends JPanel {
     
     public JPanel getDatabaseTablePanel() {
 
-        String url = "jdbc:mysql://localhost:3306/osidb";
-        String user = "root";
-        String password = "Ftw2ftw2!";
+        String url = "";
+        String user = "";
+        String password = "";
 
         Vector<Vector<Object>> data = new Vector<>();
         Vector<String> columnNames = new Vector<>();
@@ -66,3 +66,4 @@ public class OpenDatabaseTable extends JPanel {
 /*
  * This will be the basic template on opening database tables and displaying the contents
  */ 
+
